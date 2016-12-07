@@ -1,0 +1,5 @@
+resize: clean resize.c
+	cc -std=c99 resize.c -o resize
+
+clean:
+	rm -f large.bmp
