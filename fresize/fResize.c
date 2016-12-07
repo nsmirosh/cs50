@@ -59,6 +59,9 @@ int main(int argc, char* argv[])
 
     // read infile's BITMAPINFOHEADER
     BITMAPINFOHEADER *bi = malloc(sizeof(BITMAPINFOHEADER));
+    if (bi == 0) {
+        return 4;
+    }
     fread(bi, sizeof(BITMAPINFOHEADER), 1, inptr);
 
     // ensure infile is (likely) a 24-bit uncompressed BMP 4.0
@@ -77,6 +80,9 @@ int main(int argc, char* argv[])
     fread(&outputFileHeader, sizeof(BITMAPFILEHEADER), 1, inptr);
 
     BITMAPINFOHEADER *outputInfoHeader = malloc(sizeof(BITMAPINFOHEADER));
+    if (outputInfoHeader == 0) {
+        return 5;
+    }
     fread(outputInfoHeader, sizeof(BITMAPINFOHEADER), 1, inptr);
 
     int originalPadding;
@@ -154,14 +160,7 @@ void writeBMP(BITMAPINFOHEADER *bi, int originalPadding, int outputPadding) {
         }
     }
     else {
-        for (int i = 0; i < newWidth; i++) {
-            printf("width[%i] = %i\n", i,  widthPixels[i]);
-        }
-
-        for (int i = 0; i < newHeight; i++) {
-            printf("height[%i] = %i\n", i,  heightPixels[i]);
-        }
-
+       
         for (int i = 0; i < absHeight; i++) {
 
             /*RGBTRIPLE resultArray[newWidth];
