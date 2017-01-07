@@ -203,18 +203,29 @@ bool unload(void)
 {
 	// TODO
 
+	void free_all(TrieNode* curs);
+
+
+	free_all(root);
+
 	//stupid type of unloading - try with hash unloading later
 
 
-	/*for (int i = 0; i < HASHTABLE_SIZE; i++) {
-		node* cursor = hashtable[i];
-		while (cursor != NULL) {
-			node *temp = cursor;
-			cursor = cursor -> next;
-			free(temp);
-		}
-	}*/
-	return false;
+
+	return true;
+}
+
+
+void free_all(TrieNode* curs)
+{
+    int i;
+    if(!curs) return;
+
+    // recursive case (go to end of trie)
+    for (i = 0; i < 27; i++)
+       free_all(curs->children[i]);
+
+    free(curs);
 }
 
 

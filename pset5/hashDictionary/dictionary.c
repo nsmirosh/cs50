@@ -63,8 +63,8 @@ bool check(const char* word)
 
 	char lowercase[LENGTH + 1];
 	int i = 0;
-	while(word[i] != '\0') {
-		lowercase[i] = tolower(word[i]); 
+	while (word[i] != '\0') {
+		lowercase[i] = tolower(word[i]);
 		i++;
 	}
 	lowercase[i] = '\0';
@@ -122,14 +122,6 @@ bool load(const char* dictionary)
 			index++;
 		}
 	}
-
-	/*for (int i = 0; i < DICTIONARY_SIZE; i++) {
-		node *traversal = hashtable[i];
-		while (traversal != NULL) {
-			// printf("word = %s\n", traversal -> word);
-			traversal = traversal -> next;
-		}
-	}*/
 	return true;
 }
 
@@ -149,39 +141,13 @@ bool unload(void)
 {
 	// TODO
 
-	/*char wordToInsert[LENGTH + 1];
 
-	for (int c = fgetc(fp); c != EOF; c = fgetc(fp)) {
-		// char *newString = strdup(buffer);
-		if (c == '\n' || c == EOF) {
-			node *newNode = NULL;
-			wordToInsert[index] = '\0';
-			if ((newNode = malloc(sizeof(node))) == NULL) return 2;
-			// printf("wordToInsert = %s\n", wordToInsert);
-
-			int position = hash(wordToInsert);
-			// printf("hashPosition = %i\n", position);
-			// newNode -> word  = wordToInsert;
-			strcpy(newNode -> word, wordToInsert);
-			newNode -> next = hashtable[position];
-			hashtable[position] = newNode;
-			actualDictionarySize++;
-			index = 0;
-		}
-		else {
-			wordToInsert[index] = c;
-			index++;
-		}
-	}*/
+	//stupid type of unloading - try with hash unloading later
 
 
-
-		//stupid type of unloading - try with hash unloading later
-
-
-	for(int i = 0; i < HASHTABLE_SIZE; i++) {
+	for (int i = 0; i < HASHTABLE_SIZE; i++) {
 		node* cursor = hashtable[i];
-		while(cursor != NULL) {
+		while (cursor != NULL) {
 			node *temp = cursor;
 			cursor = cursor -> next;
 			free(temp);

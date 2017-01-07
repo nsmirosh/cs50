@@ -18,7 +18,6 @@
 
 #define HASHTABLE_SIZE 143091
 
-
 /**
  * Returns true if word is in dictionary else false.
  */
